@@ -25,9 +25,9 @@ const Home = () => {
   const recentPosts = posts.slice(2, 7);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 space-y-10">
+    <div className="w-full space-y-10">
       {/* Hero banner */}
-      <div className="glass rounded-3xl p-6 sm:p-8 text-center animate-fadeInUp relative overflow-hidden">
+      <div className="glass rounded-3xl p-6 sm:p-10 text-center animate-fadeInUp relative overflow-hidden flex flex-col items-center">
         <div
           className="absolute inset-0 -z-10"
           style={{

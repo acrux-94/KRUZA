@@ -53,10 +53,10 @@ const ViewRouter = () => {
 function App() {
   return (
     <AppProvider>
-      <div className="min-h-screen">
+      <div className="flex flex-col items-center w-full min-h-screen">
         <Navbar />
         <HamburgerMenu />
-        <main className="pt-24 pb-8">
+        <main className="w-full max-w-5xl pt-24 pb-20 px-4">
           <ViewRouter />
         </main>
         <PostModal />
