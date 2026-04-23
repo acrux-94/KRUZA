@@ -56,7 +56,7 @@ function App() {
       <div className="flex flex-col items-center w-full min-h-screen">
         <Navbar />
         <HamburgerMenu />
-        <main className="w-full max-w-5xl pt-24 pb-20 px-4">
+        <main className="w-full max-w-5xl pt-32 pb-32 px-4">
           <ViewRouter />
         </main>
         <PostModal />

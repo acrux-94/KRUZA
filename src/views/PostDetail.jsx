@@ -168,12 +168,12 @@ const PostDetail = () => {
 
       {/* Botones de acción */}
       {!isOwn && (
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           <button
             onClick={handleContact}
-            className="glass-btn-primary flex-1 flex items-center justify-center gap-2.5 py-4 rounded-2xl font-bold text-base"
+            className="glass-btn-primary flex-1 flex items-center justify-center gap-3 py-5 rounded-2xl font-black text-lg shadow-xl"
           >
-            <MessageCircle size={20} />
+            <MessageCircle size={22} />
             Contactar
           </button>
           <button
@@ -181,12 +181,12 @@ const PostDetail = () => {
               if (!currentUser) navigate("profile");
               else toggleFavorite(selectedPost.id);
             }}
-            className={`glass-btn w-16 flex items-center justify-center rounded-2xl transition-all duration-300 ${
+            className={`glass-btn w-20 flex items-center justify-center rounded-2xl transition-all duration-300 ${
               isFav ? "bg-red-500/20 border-red-400/40" : ""
             }`}
           >
             <Heart
-              size={22}
+              size={26}
               className={
                 isFav
                   ? "text-red-400 fill-red-400"
@@ -194,8 +194,8 @@ const PostDetail = () => {
               }
             />
           </button>
-          <button className="glass-btn w-16 flex items-center justify-center rounded-2xl">
-            <Share2 size={20} className="text-white/60" />
+          <button className="glass-btn w-20 flex items-center justify-center rounded-2xl">
+            <Share2 size={24} className="text-white/60" />
           </button>
         </div>
       )}

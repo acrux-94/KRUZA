@@ -134,9 +134,9 @@ const Home = () => {
       {/* FAB */}
       <button
         onClick={() => setShowPostModal(true)}
-        className="fixed bottom-8 right-6 z-30 flex items-center gap-2.5 px-5 py-3.5 rounded-2xl font-bold text-sm text-white glass-btn-primary fab-btn shadow-2xl"
+        className="fixed bottom-10 right-8 z-30 flex items-center gap-3 px-7 py-4.5 rounded-2xl font-black text-base text-white glass-btn-primary fab-btn shadow-2xl scale-110 hover:scale-115 transition-transform"
       >
-        <Plus size={20} strokeWidth={2.5} />
+        <Plus size={22} strokeWidth={3} />
         <span>Publicar perro</span>
       </button>
     </div>
