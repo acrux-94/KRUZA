@@ -168,10 +168,10 @@ export const AppProvider = ({ children }) => {
   );
 
   // ─── Notificaciones ────────────────────────────────────
-  const showNotification = (message, type = "info") => {
+  const showNotification = useCallback((message, type = "info") => {
     setNotification({ message, type });
     setTimeout(() => setNotification(null), 3000);
-  };
+  }, []);
 
   // ─── Navegación ────────────────────────────────────────
   const navigate = useCallback((view, data = null) => {

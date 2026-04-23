@@ -1,121 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+// src/App.jsx
+import { AppProvider, useApp } from "./context/AppContext";
+import Navbar from "./components/Navbar";
+import HamburgerMenu from "./components/HamburgerMenu";
+import PostModal from "./components/PostModal";
+import Home from "./views/Home";
+import Search from "./views/Search";
+import Messages from "./views/Messages";
+import PostDetail from "./views/PostDetail";
+import Profile from "./views/Profile";
 
-function App() {
-  const [count, setCount] = useState(0)
+// ─── Notification Toast ──────────────────────────────────
+const Notification = () => {
+  const { notification } = useApp();
+  if (!notification) return null;
+
+  const colors = {
+    success:
+      "bg-green-500/20 border-green-400/40 text-green-300",
+    info: "bg-white/10 border-white/20 text-white/80",
+    error: "bg-red-500/20 border-red-400/40 text-red-300",
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[100] animate-fadeInUp">
+      <div
+        className={`px-5 py-3 rounded-2xl backdrop-blur-xl text-sm font-medium border shadow-2xl ${
+          colors[notification.type] || colors.info
+        }`}
+      >
+        {notification.message}
+      </div>
+    </div>
+  );
+};
 
-      <div className="ticks"></div>
+// ─── Router basado en estado ─────────────────────────────
+const ViewRouter = () => {
+  const { currentView } = useApp();
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href={`${import.meta.env.BASE_URL}icons.svg#documentation-icon`}></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href={`${import.meta.env.BASE_URL}icons.svg#social-icon`}></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href={`${import.meta.env.BASE_URL}icons.svg#github-icon`}></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href={`${import.meta.env.BASE_URL}icons.svg#discord-icon`}></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href={`${import.meta.env.BASE_URL}icons.svg#x-icon`}></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href={`${import.meta.env.BASE_URL}icons.svg#bluesky-icon`}></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+  const views = {
+    home: <Home />,
+    search: <Search />,
+    messages: <Messages />,
+    profile: <Profile />,
+    postDetail: <PostDetail />,
+  };
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  return views[currentView] || <Home />;
+};
+
+// ─── App principal ───────────────────────────────────────
+function App() {
+  return (
+    <AppProvider>
+      <div className="min-h-screen">
+        <Navbar />
+        <HamburgerMenu />
+        <main className="pt-24 pb-8">
+          <ViewRouter />
+        </main>
+        <PostModal />
+        <Notification />
+      </div>
+    </AppProvider>
+  );
 }
 
-export default App
+export default App;

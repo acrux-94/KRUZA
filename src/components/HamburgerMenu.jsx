@@ -1,6 +1,6 @@
 // src/components/HamburgerMenu.jsx
 import React from "react";
-import { Github, LogOut, ExternalLink } from "lucide-react";
+import { Code2, LogOut, ExternalLink } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
 const HamburgerMenu = () => {
@@ -24,13 +24,13 @@ const HamburgerMenu = () => {
 
         {/* GitHub */}
         <a
-          href="https://github.com"
+          href="https://github.com/acrux-94/KRUZA"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/06 transition-all duration-200 group"
         >
           <div className="w-8 h-8 glass rounded-lg flex items-center justify-center">
-            <Github size={16} className="text-white/70 group-hover:text-white transition-colors" />
+            <Code2 size={16} className="text-white/70 group-hover:text-white transition-colors" />
           </div>
           <div className="flex-1">
             <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">

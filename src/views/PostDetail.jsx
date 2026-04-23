@@ -1,5 +1,4 @@
-// src/views/PostDetail.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ArrowLeft,
   MapPin,
@@ -22,10 +21,11 @@ const PostDetail = () => {
     getUserById,
   } = useApp();
 
-  if (!selectedPost) {
-    navigate("home");
-    return null;
-  }
+  useEffect(() => {
+    if (!selectedPost) navigate("home");
+  }, [selectedPost, navigate]);
+
+  if (!selectedPost) return null;
 
   const owner = getUserById(selectedPost.userId);
   const isFav =

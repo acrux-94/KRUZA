@@ -16,7 +16,10 @@ const Navbar = () => {
     navigate,
     showHamburger,
     setShowHamburger,
+    conversations,
   } = useApp();
+
+  const unreadCount = Object.keys(conversations).length;
 
   const navIcons = [
     { id: "messages", icon: MessageCircle, label: "Mensajes" },
@@ -61,9 +64,9 @@ const Navbar = () => {
                   className={isActive ? "text-white" : "text-white/60"}
                   strokeWidth={isActive ? 2.5 : 1.8}
                 />
-                {id === "messages" && (
+                {id === "messages" && unreadCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-pink-500 border border-[#0a0a0f] text-[9px] font-bold flex items-center justify-center">
-                    2
+                    {unreadCount}
                   </span>
                 )}
               </button>
